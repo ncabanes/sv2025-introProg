@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlumstay8irce"]
+
+[ext_resource type="Texture2D" uid="uid://yp0y7kqbpo13" path="res://imagenes/fondo.png" id="1_vcqe5"]
+[ext_resource type="Script" uid="uid://c65bimynyg5hf" path="res://scripts/nave.gd" id="2_1owxw"]
+[ext_resource type="Texture2D" uid="uid://dxdlg70bsj8mt" path="res://imagenes/nave.png" id="3_73be0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tt8q4"]
+size = Vector2(92, 35)
+
+[node name="Nivel01" type="Node2D"]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+texture = ExtResource("1_vcqe5")
+centered = false
+
+[node name="Nave" type="Area2D" parent="."]
+position = Vector2(125, 349)
+script = ExtResource("2_1owxw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Nave"]
+texture = ExtResource("3_73be0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nave"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_tt8q4")
