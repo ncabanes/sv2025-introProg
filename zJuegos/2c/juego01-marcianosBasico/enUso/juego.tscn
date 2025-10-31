@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1lqlq1214noc"]
+[gd_scene load_steps=8 format=3 uid="uid://c1lqlq1214noc"]
 
 [ext_resource type="Texture2D" uid="uid://caasq5e81aqt2" path="res://imagenes/fondo1280.png" id="1_g3dr0"]
 [ext_resource type="Script" uid="uid://cy3epn1svt44i" path="res://nave.gd" id="2_n74ki"]
 [ext_resource type="Texture2D" uid="uid://cghyqfwblxtme" path="res://imagenes/nave.png" id="3_ipdbw"]
+[ext_resource type="Script" uid="uid://c6sg7dj7f3csn" path="res://enemigo.gd" id="4_xbmtn"]
+[ext_resource type="Texture2D" uid="uid://ba5v1tuvi413y" path="res://imagenes/enemigo1a.png" id="5_6v0qg"]
+[ext_resource type="Texture2D" uid="uid://tau6oeitjy84" path="res://imagenes/enemigo1b.png" id="6_6v0qg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpk6b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6v0qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6v0qg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Juego" type="Node2D"]
 
@@ -16,3 +33,11 @@ script = ExtResource("2_n74ki")
 
 [node name="Sprite2D" type="Sprite2D" parent="Nave"]
 texture = ExtResource("3_ipdbw")
+
+[node name="Enemigo" type="Area2D" parent="."]
+position = Vector2(314, 174)
+script = ExtResource("4_xbmtn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo"]
+sprite_frames = SubResource("SpriteFrames_cpk6b")
+autoplay = "default"
