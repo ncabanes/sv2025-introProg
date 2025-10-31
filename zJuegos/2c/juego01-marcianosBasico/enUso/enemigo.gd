@@ -22,3 +22,4 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	print("Boom") # Replace with function body.
+	get_tree().change_scene_to_file("res://bienvenida.tscn")
