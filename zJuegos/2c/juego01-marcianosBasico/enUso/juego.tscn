@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://vcexepxwbxnf"]
+[gd_scene load_steps=4 format=3 uid="uid://vcexepxwbxnf"]
 
 [ext_resource type="Texture2D" uid="uid://bm81psse5tm0c" path="res://imagenes/fondo1280.png" id="1_g3dr0"]
+[ext_resource type="Script" uid="uid://1qybj1o80wdi" path="res://nave.gd" id="2_n74ki"]
+[ext_resource type="Texture2D" uid="uid://duy7qfiopmq0j" path="res://imagenes/nave.png" id="3_ipdbw"]
 
 [node name="Juego" type="Node2D"]
 position = Vector2(0, 1)
@@ -8,3 +10,10 @@ position = Vector2(0, 1)
 [node name="Fondo" type="Sprite2D" parent="."]
 texture = ExtResource("1_g3dr0")
 centered = false
+
+[node name="Nave" type="Area2D" parent="."]
+position = Vector2(640, 616)
+script = ExtResource("2_n74ki")
+
+[node name="Sprite2D" type="Sprite2D" parent="Nave"]
+texture = ExtResource("3_ipdbw")
