@@ -1,10 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://vcexepxwbxnf"]
+[gd_scene load_steps=10 format=3 uid="uid://vcexepxwbxnf"]
 
 [ext_resource type="Texture2D" uid="uid://bm81psse5tm0c" path="res://imagenes/fondo1280.png" id="1_g3dr0"]
 [ext_resource type="Script" uid="uid://1qybj1o80wdi" path="res://nave.gd" id="2_n74ki"]
 [ext_resource type="Texture2D" uid="uid://duy7qfiopmq0j" path="res://imagenes/nave.png" id="3_ipdbw"]
 [ext_resource type="Script" uid="uid://cm5h3aio0ump4" path="res://enemigo.gd" id="4_xbmtn"]
 [ext_resource type="Texture2D" uid="uid://dcl1h3nnme2q2" path="res://imagenes/enemigo1a.png" id="5_6v0qg"]
+[ext_resource type="Texture2D" uid="uid://chaookbmxxry3" path="res://imagenes/enemigo1b.png" id="6_6v0qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbmtn"]
+size = Vector2(117, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v0qg"]
+size = Vector2(88, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cpk6b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6v0qg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6v0qg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Juego" type="Node2D"]
 position = Vector2(0, 1)
@@ -20,9 +41,55 @@ script = ExtResource("2_n74ki")
 [node name="Sprite2D" type="Sprite2D" parent="Nave"]
 texture = ExtResource("3_ipdbw")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nave"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_xbmtn")
+
 [node name="Enemigo" type="Area2D" parent="."]
 position = Vector2(462, 184)
 script = ExtResource("4_xbmtn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemigo"]
-texture = ExtResource("5_6v0qg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+shape = SubResource("RectangleShape2D_6v0qg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo"]
+sprite_frames = SubResource("SpriteFrames_cpk6b")
+autoplay = "default"
+
+[node name="Enemigo2" type="Area2D" parent="."]
+position = Vector2(600, 184)
+script = ExtResource("4_xbmtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo2"]
+shape = SubResource("RectangleShape2D_6v0qg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo2"]
+sprite_frames = SubResource("SpriteFrames_cpk6b")
+autoplay = "default"
+
+[node name="Enemigo3" type="Area2D" parent="."]
+position = Vector2(733, 184)
+script = ExtResource("4_xbmtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo3"]
+shape = SubResource("RectangleShape2D_6v0qg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo3"]
+sprite_frames = SubResource("SpriteFrames_cpk6b")
+autoplay = "default"
+
+[node name="Enemigo4" type="Area2D" parent="."]
+position = Vector2(871, 184)
+script = ExtResource("4_xbmtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo4"]
+shape = SubResource("RectangleShape2D_6v0qg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemigo4"]
+sprite_frames = SubResource("SpriteFrames_cpk6b")
+autoplay = "default"
+
+[connection signal="area_entered" from="Enemigo" to="Enemigo" method="_on_area_entered"]
+[connection signal="area_entered" from="Enemigo2" to="Enemigo2" method="_on_area_entered"]
+[connection signal="area_entered" from="Enemigo3" to="Enemigo3" method="_on_area_entered"]
+[connection signal="area_entered" from="Enemigo4" to="Enemigo4" method="_on_area_entered"]
