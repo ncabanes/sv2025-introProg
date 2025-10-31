@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://vcexepxwbxnf"]
+
+[ext_resource type="Texture2D" uid="uid://bm81psse5tm0c" path="res://imagenes/fondo1280.png" id="1_g3dr0"]
+
+[node name="Juego" type="Node2D"]
+position = Vector2(0, 1)
+
+[node name="Fondo" type="Sprite2D" parent="."]
+texture = ExtResource("1_g3dr0")
+centered = false
