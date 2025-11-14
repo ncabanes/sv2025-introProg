@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_right") and position.x < get_viewport_rect().size.x / 2:
 		position.x += velocidad * delta
 	if Input.is_action_pressed("ui_left"):
 		position.x -= velocidad * delta
