@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		enemigo.position.y = randi_range(50,600)
 		add_child(enemigo)
 		tiempoRestanteEnemigo = 0.5
-	if Input.is_action_just_pressed("ui_accept"	):
+	if Input.is_action_just_pressed("disparo"	):
 		var disparo = escenaDisparo.instantiate()
 		disparo.position = get_node("Nave").position
 		add_child(disparo)
