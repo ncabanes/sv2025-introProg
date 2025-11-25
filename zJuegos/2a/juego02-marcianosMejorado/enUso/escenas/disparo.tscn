@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3ugfle543a1w"]
+
+[ext_resource type="Texture2D" uid="uid://dshef7cn2sumq" path="res://imagenes/disparo.png" id="1_fvydf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bo8mp"]
+size = Vector2(46, 12)
+
+[node name="Disparo" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fvydf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bo8mp")
