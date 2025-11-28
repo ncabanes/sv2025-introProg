@@ -2,12 +2,14 @@ extends Node2D
 
 var escenaEnemigo : PackedScene
 var escenaDisparo : PackedScene
+var escenaExplosion : PackedScene
 var tiempoRestanteEnemigo : float = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	escenaEnemigo = load("res://escenas/enemigo.tscn")
 	escenaDisparo = load("res://escenas/disparo.tscn")
+	escenaExplosion = load("res://escenas/explosion.tscn")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,3 +25,12 @@ func _process(delta: float) -> void:
 		var disparo = escenaDisparo.instantiate()
 		disparo.position = get_node("Nave").position
 		add_child(disparo)
+		
+		# explotar(get_node("Nave").position)
+
+func explotar(donde : Vector2):
+	var explosion = escenaExplosion.instantiate()
+	explosion.position = donde
+	explosion.emitting = true
+	add_child(explosion)
+	

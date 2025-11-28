@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://domyqhb3s24u"]
+
+[sub_resource type="Gradient" id="Gradient_tt8q4"]
+colors = PackedColorArray(0.924938, 0.7595995, 0.28032872, 1, 0.5873033, 0.14516473, 0.18783602, 1)
+
+[node name="Explosion" type="CPUParticles2D"]
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 5.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_tt8q4")
