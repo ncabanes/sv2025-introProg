@@ -16,7 +16,7 @@
 #  ******
 
 
-def escribir_triang_creciente(base):
+def escribir_triang_creciente(base: int) -> None:
     # Calculamos la altura (número de filas)
     altura = (base + 1) // 2
     
