@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbajf5svjtwtj"]
+
+[ext_resource type="Script" uid="uid://bs71hb8n02ndk" path="res://scripts/disparo_enemigo.gd" id="1_26biu"]
+[ext_resource type="Texture2D" uid="uid://pumtaf8foq5b" path="res://imagenes/disparoEnemigo.png" id="2_fvjvo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1l0b"]
+size = Vector2(19, 16)
+
+[node name="disparoEnemigo" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_26biu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fvjvo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_s1l0b")

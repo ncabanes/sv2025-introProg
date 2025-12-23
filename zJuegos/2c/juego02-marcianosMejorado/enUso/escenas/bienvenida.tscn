@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1jvg4mwrxp5k"]
+
+[ext_resource type="Script" uid="uid://dfj03gsiwruqd" path="res://scripts/bienvenida.gd" id="1_2eyjr"]
+[ext_resource type="FontFile" uid="uid://c370htukjuf2k" path="res://tipografias/Neuropol.otf" id="1_hpq5i"]
+[ext_resource type="Texture2D" uid="uid://bcn84fbe0fxo8" path="res://imagenes/fondo.png" id="2_3pv70"]
+[ext_resource type="PackedScene" uid="uid://ckckbgt0s5vb6" path="res://escenas/enemigo.tscn" id="3_k8noe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2eyjr"]
+font = ExtResource("1_hpq5i")
+font_size = 56
+font_color = Color(0.05882353, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpq5i"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.036274847, 0.2608227, 0.3591999, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2eyjr"]
+bg_color = Color(0.07183523, 0.22581619, 0.2940766, 1)
+
+[node name="bienvenida" type="Node2D"]
+script = ExtResource("1_2eyjr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3pv70")
+centered = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "SV-TYPE"
+label_settings = SubResource("LabelSettings_2eyjr")
+horizontal_alignment = 1
+
+[node name="BotonJugar" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.02745098, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.9490196, 0.2, 1)
+theme_override_fonts/font = ExtResource("1_hpq5i")
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxFlat_hpq5i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2eyjr")
+text = "Jugar"
+
+[node name="Enemigo" parent="." instance=ExtResource("3_k8noe")]
+position = Vector2(1320, 142)
+
+[node name="Enemigo2" parent="." instance=ExtResource("3_k8noe")]
+position = Vector2(1654, 573)
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BotonJugar" to="." method="_on_boton_jugar_pressed"]
