@@ -1,25 +1,30 @@
 extends Node2D
 
 var escenaEnemigo: PackedScene
+var escenaEnemigo2: PackedScene
 var escenaExplosion: PackedScene
 var escenaDisparo: PackedScene
 var escenaDisparoEnemigos: PackedScene
-var puntos : int = 0
+#var puntos : int = 0
 @export var vidas : int = 3
 var posicionInicialNave: Vector2
 
 func _ready() -> void:
 	escenaEnemigo = load("res://escenas/enemigo.tscn")
+	escenaEnemigo2 = load("res://escenas/enemigo_2.tscn")
 	escenaExplosion = load("res://escenas/explosion.tscn")
 	escenaDisparo = load("res://escenas/disparo.tscn")
 	escenaDisparoEnemigos = load("res://escenas/disparo_enemigo.tscn")
 	posicionInicialNave = $Nave.position
+	$TextoPuntos.text = "Puntos: " + str(ConfigJuego.puntos)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("disparo"):
 		var disparo = escenaDisparo.instantiate()
 		add_child(disparo)
 		disparo.position = $Nave.position
+	if Input.is_action_just_pressed("cambiar_nivel"):
+		get_tree().change_scene_to_file("res://escenas/nivel2.tscn")
 
 func mostrarExplosion(position: Vector2) -> void:
 	var explosion = escenaExplosion.instantiate()
@@ -28,14 +33,20 @@ func mostrarExplosion(position: Vector2) -> void:
 	explosion.emitting = true
 
 func _on_timer_salida_enemigos_timeout() -> void:
-	var enemigo = escenaEnemigo.instantiate()
-	enemigo.position.x = 1200
-	enemigo.position.y = randi_range(50, get_viewport_rect().size.y-50)
-	add_child(enemigo)
+	if randi_range(1, 10) < 8:
+		var enemigo = escenaEnemigo.instantiate()
+		enemigo.position.x = 1200
+		enemigo.position.y = randi_range(50, get_viewport_rect().size.y-50)
+		add_child(enemigo)
+	else:
+		var enemigo = escenaEnemigo2.instantiate()
+		enemigo.position.x = 1200
+		enemigo.position.y = randi_range(50, get_viewport_rect().size.y-50)
+		add_child(enemigo)
 
 func incrementarPuntos(cantidad: int) -> void:
-	puntos += cantidad
-	$TextoPuntos.text = "Puntos: " + str(puntos)
+	ConfigJuego.puntos += cantidad
+	$TextoPuntos.text = "Puntos: " + str(ConfigJuego.puntos)
 
 func perderVida() -> void:
 	vidas -= 1

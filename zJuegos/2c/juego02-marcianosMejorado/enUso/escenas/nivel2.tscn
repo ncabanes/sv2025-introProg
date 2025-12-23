@@ -1,31 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://b03ndf6vdu1co"]
+[gd_scene load_steps=9 format=3 uid="uid://6d7ixch3ere8"]
 
-[ext_resource type="Texture2D" uid="uid://bcn84fbe0fxo8" path="res://imagenes/fondo.png" id="1_dayui"]
-[ext_resource type="Script" uid="uid://ckxlwg6g6ik6o" path="res://scripts/juego.gd" id="1_qnwci"]
-[ext_resource type="Script" uid="uid://de4svetc7dffu" path="res://scripts/nave.gd" id="2_mf1lf"]
-[ext_resource type="Texture2D" uid="uid://oc0d6gxu3ui" path="res://imagenes/nave.png" id="2_v0a8y"]
-[ext_resource type="FontFile" uid="uid://c370htukjuf2k" path="res://tipografias/Neuropol.otf" id="6_j5whg"]
+[ext_resource type="Script" uid="uid://ckxlwg6g6ik6o" path="res://scripts/juego.gd" id="1_8acea"]
+[ext_resource type="Texture2D" uid="uid://dbbeyrthr6q38" path="res://imagenes/fondo2.png" id="2_8acea"]
+[ext_resource type="Script" uid="uid://de4svetc7dffu" path="res://scripts/nave.gd" id="3_wtc5o"]
+[ext_resource type="Texture2D" uid="uid://oc0d6gxu3ui" path="res://imagenes/nave.png" id="4_4uxp8"]
+[ext_resource type="FontFile" uid="uid://c370htukjuf2k" path="res://tipografias/Neuropol.otf" id="5_y8yvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mf1lf"]
 size = Vector2(87, 37)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qk6os"]
-font = ExtResource("6_j5whg")
+font = ExtResource("5_y8yvi")
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_n5myf"]
-font = ExtResource("6_j5whg")
+font = ExtResource("5_y8yvi")
 font_size = 24
 
 [node name="Juego" type="Node2D"]
-script = ExtResource("1_qnwci")
+script = ExtResource("1_8acea")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 repeat_size = Vector2(1280, 0)
 autoscroll = Vector2(-100, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-texture = ExtResource("1_dayui")
+texture = ExtResource("2_8acea")
 centered = false
 
 [node name="Nave" type="Area2D" parent="."]
@@ -33,10 +33,10 @@ z_index = 1
 position = Vector2(126, 324)
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("2_mf1lf")
+script = ExtResource("3_wtc5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="Nave"]
-texture = ExtResource("2_v0a8y")
+texture = ExtResource("4_4uxp8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nave"]
 position = Vector2(1.5, 1.5)

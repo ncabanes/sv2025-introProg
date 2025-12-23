@@ -3,7 +3,7 @@ extends Node2D
 var velocidadEnemigos = 500
 
 func _ready() -> void:
-	pass
+	ConfigJuego.puntos = 0
 
 func _process(delta: float) -> void:
 	$Enemigo.position.x -= velocidadEnemigos * delta
