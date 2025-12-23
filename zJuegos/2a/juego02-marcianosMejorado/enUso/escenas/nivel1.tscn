@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://b03ndf6vdu1co"]
+
+[ext_resource type="Texture2D" uid="uid://bcn84fbe0fxo8" path="res://imagenes/fondo.png" id="1_dayui"]
+[ext_resource type="Script" uid="uid://ckxlwg6g6ik6o" path="res://scripts/juego.gd" id="1_qnwci"]
+[ext_resource type="Script" uid="uid://de4svetc7dffu" path="res://scripts/nave.gd" id="2_mf1lf"]
+[ext_resource type="Texture2D" uid="uid://oc0d6gxu3ui" path="res://imagenes/nave.png" id="2_v0a8y"]
+[ext_resource type="PackedScene" uid="uid://ckckbgt0s5vb6" path="res://escenas/enemigo.tscn" id="4_t4q8c"]
+[ext_resource type="FontFile" uid="uid://c370htukjuf2k" path="res://tipografias/Neuropol.otf" id="6_j5whg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf1lf"]
+size = Vector2(87, 37)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qk6os"]
+font = ExtResource("6_j5whg")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_n5myf"]
+font = ExtResource("6_j5whg")
+font_size = 24
+
+[node name="Juego" type="Node2D"]
+script = ExtResource("1_qnwci")
+numero_nivel = 1
+tiempo_hasta_salto_nivel = 30.0
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+autoscroll = Vector2(-200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture = ExtResource("1_dayui")
+centered = false
+
+[node name="Nave" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(126, 324)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_mf1lf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Nave"]
+texture = ExtResource("2_v0a8y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nave"]
+position = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_mf1lf")
+
+[node name="Enemigo" parent="." instance=ExtResource("4_t4q8c")]
+position = Vector2(1170, 352)
+
+[node name="TimerSalidaEnemigos" type="Timer" parent="."]
+autostart = true
+
+[node name="TimerDisparoEnemigos" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="TextoPuntos" type="Label" parent="."]
+offset_left = 301.0
+offset_top = 35.0
+offset_right = 373.0
+offset_bottom = 58.0
+text = "Puntos: 0"
+label_settings = SubResource("LabelSettings_qk6os")
+
+[node name="TextoVidas" type="Label" parent="."]
+offset_left = 859.0
+offset_top = 35.0
+offset_right = 931.0
+offset_bottom = 58.0
+text = "Vidas: 3"
+label_settings = SubResource("LabelSettings_n5myf")
+
+[connection signal="area_entered" from="Nave" to="Nave" method="_on_area_entered"]
+[connection signal="timeout" from="TimerSalidaEnemigos" to="." method="_on_timer_salida_enemigos_timeout"]
+[connection signal="timeout" from="TimerDisparoEnemigos" to="." method="_on_timer_disparo_enemigos_timeout"]
