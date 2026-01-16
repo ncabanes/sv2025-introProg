@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://ce3kjnyioo3d5"]
+
+[ext_resource type="Script" uid="uid://lchd8m8cykr0" path="res://jugador.gd" id="1_8yukp"]
+[ext_resource type="Texture2D" uid="uid://r60bblulk0y2" path="res://imagenes/personaje1.png" id="2_i4fcf"]
+[ext_resource type="Texture2D" uid="uid://csquvsdwwp1rb" path="res://imagenes/plataforma1.png" id="3_i4fcf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngs2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i4fcf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1o55"]
+size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngs2r"]
+size = Vector2(16, 16)
+
+[node name="Nivel01" type="Node2D"]
+
+[node name="Jugador" type="CharacterBody2D" parent="."]
+position = Vector2(22, 12)
+script = ExtResource("1_8yukp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Jugador"]
+sprite_frames = SubResource("SpriteFrames_ngs2r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jugador"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_l1o55")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(23, 51)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("3_i4fcf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ngs2r")
