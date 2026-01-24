@@ -21,5 +21,12 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+	if velocity.x > 0:
+		$AnimatedSprite2D.play("derecha")
+	elif velocity.x < 0:
+		$AnimatedSprite2D.play("izquierda")
+	else:
+		$AnimatedSprite2D.play("default")
 
 	move_and_slide()
