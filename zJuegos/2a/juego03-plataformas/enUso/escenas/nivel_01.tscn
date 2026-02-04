@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://ctdfwstv85b2m"]
+[gd_scene load_steps=16 format=4 uid="uid://ctdfwstv85b2m"]
 
 [ext_resource type="Script" uid="uid://b4xl6wpe2r2fy" path="res://scripts/personaje.gd" id="1_hyty7"]
 [ext_resource type="Texture2D" uid="uid://dfln16w0rcdsi" path="res://imagenes/personaje1.png" id="2_1owxw"]
 [ext_resource type="Texture2D" uid="uid://dh5qosf3pyl85" path="res://imagenes/plataforma1.png" id="3_1owxw"]
 [ext_resource type="Texture2D" uid="uid://by6wwl4te8nmh" path="res://imagenes/tilemap.png" id="4_73be0"]
+[ext_resource type="Texture2D" uid="uid://ccuefima0yd3s" path="res://imagenes/moneda.png" id="5_tt8q4"]
+[ext_resource type="PackedScene" uid="uid://cc273pq1ned3v" path="res://escenas/enemigo.tscn" id="6_x6gq6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_73be0"]
 animations = [{
@@ -277,6 +279,47 @@ texture = ExtResource("4_73be0")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_tt8q4")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6gq6"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_62ted"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bcdjo"]
+resource_name = "tamaño"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.98),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3paj"]
+_data = {
+&"RESET": SubResource("Animation_62ted"),
+&"tamaño": SubResource("Animation_bcdjo")
+}
+
 [node name="Nivel01" type="Node2D"]
 
 [node name="Personaje" type="CharacterBody2D" parent="."]
@@ -305,3 +348,42 @@ shape = SubResource("RectangleShape2D_73be0")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAgAAAABAAYAAAABAAgAAAAEAAAAAAACAAgAAAAEAAAAAAACAAkAAAAEAAAAAAADAAkAAAAEAAAAAAAEAAkAAAAEAAAAAAAFAAkAAAAEAAAAAAAGAAkAAAAEAAAAAAAGAAoAAAAEAAAAAAAHAAoAAAAEAAAAAAAIAAoAAAAEAAAAAAAJAAoAAAAEAAAAAAAKAAoAAAAEAAAAAAALAAoAAAAEAAAAAAAMAAoAAAAEAAAAAAANAAkAAAAEAAAAAAAOAAkAAAAEAAAAAAAPAAkAAAAEAAAAAAABAAcAAAAEAAAAAAABAAkAAAAEAAAAAAABAAoAAAAEAAAAAAACAAcAAAAEAAAAAAACAAoAAAAEAAAAAAADAAcAAAAEAAAAAAADAAgAAAAEAAAAAAADAAoAAAAEAAAAAAAEAAcAAAAEAAAAAAAEAAgAAAAEAAAAAAAEAAoAAAAEAAAAAAAFAAcAAAAEAAAAAAAFAAgAAAAEAAAAAAAFAAoAAAAEAAAAAAAGAAcAAAAEAAAAAAAGAAgAAAAEAAAAAAAHAAcAAAAEAAAAAAAHAAgAAAAEAAAAAAAHAAkAAAAEAAAAAAAIAAcAAAAEAAAAAAAIAAgAAAAEAAAAAAAIAAkAAAAEAAAAAAAJAAcAAAAEAAAAAAAJAAgAAAAEAAAAAAAJAAkAAAAEAAAAAAAKAAcAAAAEAAAAAAAKAAgAAAAEAAAAAAAKAAkAAAAEAAAAAAALAAcAAAAEAAAAAAALAAgAAAAEAAAAAAALAAkAAAAEAAAAAAAMAAcAAAAEAAAAAAAMAAgAAAAEAAAAAAAMAAkAAAAEAAAAAAANAAcAAAAEAAAAAAANAAgAAAAEAAAAAAANAAoAAAAEAAAAAAAOAAcAAAAEAAAAAAAOAAgAAAAEAAAAAAAOAAoAAAAEAAAAAAAPAAcAAAAEAAAAAAAPAAgAAAAEAAAAAAAPAAoAAAAEAAAAAAAQAAcAAAADAAYAAAAQAAgAAAADAAYAAAAQAAkAAAADAAYAAAAQAAoAAAADAAYAAAAAAAcAAAABAAYAAAAAAAkAAAABAAYAAAAAAAoAAAABAAYAAAADAAYAAAACAAEAAAAEAAYAAAACAAEAAAAFAAYAAAACAAEAAAAGAAYAAAACAAEAAAAHAAYAAAACAAEAAAAIAAYAAAACAAEAAAAJAAYAAAACAAEAAAAKAAYAAAACAAEAAAALAAYAAAACAAEAAAAMAAYAAAACAAEAAAANAAYAAAACAAEAAAAOAAYAAAACAAEAAAAPAAYAAAACAAEAAAAQAAYAAAADAAEAAAAAAAYAAAABAAEAAAABAAYAAAACAAEAAAACAAYAAAACAAEAAAAFAAUAAAAGAAYAAAAEAAMAAAAAAAAAAAAJAAQAAAABAAYAAAAKAAQAAAACAAYAAAALAAQAAAADAAYAAAALAAUAAAADAAcAAAAKAAUAAAACAAcAAAAJAAUAAAABAAcAAAAJAAMAAAABAAEAAAAKAAMAAAACAAEAAAALAAMAAAADAAEAAAATAAkAAAABAAAAAAAUAAkAAAACAAAAAAAVAAkAAAACAAAAAAAWAAkAAAACAAAAAAAXAAkAAAACAAAAAAAYAAkAAAACAAAAAAAZAAkAAAACAAAAAAAaAAkAAAACAAAAAAAbAAkAAAADAAAAAAAZAAYAAAABAAAAAAAaAAYAAAACAAAAAAAbAAYAAAACAAAAAAAcAAYAAAACAAAAAAAdAAYAAAADAAAAAAAdAAMAAAABAAAAAAAeAAMAAAACAAAAAAAfAAMAAAADAAAAAAAhAAYAAAABAAAAAAAiAAYAAAACAAAAAAAjAAYAAAADAAAAAAAlAAMAAAABAAAAAAAmAAMAAAACAAAAAAAnAAMAAAADAAAAAAArAAEAAAABAAAAAAAsAAEAAAACAAAAAAAtAAEAAAADAAAAAAAuAAUAAAABAAAAAAAvAAUAAAACAAAAAAAwAAUAAAADAAAAAAAxAAkAAAABAAAAAAAyAAkAAAACAAAAAAAzAAkAAAADAAAAAAA2AAwAAAABAAAAAAA3AAwAAAACAAAAAAA4AAwAAAADAAAAAAACAAUAAAAIAAQAAAA=")
 tile_set = SubResource("TileSet_x6gq6")
+
+[node name="Moneda" type="Area2D" parent="."]
+position = Vector2(71, 38)
+
+[node name="Sprite2D" type="Sprite2D" parent="Moneda"]
+texture = ExtResource("5_tt8q4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Moneda"]
+shape = SubResource("CircleShape2D_x6gq6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Moneda"]
+libraries = {
+&"": SubResource("AnimationLibrary_a3paj")
+}
+autoplay = "tamaño"
+
+[node name="Enemigo" parent="." instance=ExtResource("6_x6gq6")]
+position = Vector2(410, 87)
+origen = Vector2(313, 133)
+destino = Vector2(435, 133)
+velocidad = 50
+
+[node name="Enemigo2" parent="." instance=ExtResource("6_x6gq6")]
+position = Vector2(259, 79)
+origen = Vector2(212, 76)
+destino = Vector2(260, 76)
+velocidad = 20
+
+[node name="Enemigo3" parent="." instance=ExtResource("6_x6gq6")]
+position = Vector2(560, 85)
+origen = Vector2(470, 35)
+destino = Vector2(560, 85)
+velocidad = 50
+
+[node name="Enemigo4" parent="." instance=ExtResource("6_x6gq6")]
+position = Vector2(632, 39)
+origen = Vector2(600, 35)
+destino = Vector2(635, 35)
+velocidad = 40
