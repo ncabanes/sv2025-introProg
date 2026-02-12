@@ -1,25 +1,29 @@
 # Lista de tareas, versión 6, diccionarios + ficheros
 # Permite añadir, ver y modificar (con prioridades)
 
-# Versión con "try-except" y manejo de ficheros con "with"
+# Versión con "path.exists" y manejo de ficheros con "close"
+
+import os
 
 tareas = []
 
-try:
-    with open("tareas.txt", "r") as fichero:
-        for linea in fichero:
-            fragmentos = linea.rstrip().split("#")
+if os.path.exists("tareas.txt"):
+    fichero = open("tareas.txt", "r")
+    linea = fichero.readline().rstrip()
+    while linea:
+        fragmentos = linea.split("#")
         
-            tarea = fragmentos[0]
-            prioridad = int(fragmentos[1])
+        tarea = fragmentos[0]
+        prioridad = int(fragmentos[1])
 
-            dato_actual = {
-                "tarea": tarea,
-                "prioridad": prioridad
-            }
-            tareas.append(dato_actual)
-except:
-    print("Sin datos previos. Se creará un fichero nuevo.")
+        dato_actual = {
+            "tarea": tarea,
+            "prioridad": prioridad
+        }
+        tareas.append(dato_actual)
+
+        linea = fichero.readline().rstrip()
+    fichero.close()
 
 terminado = False
 while not terminado:
@@ -68,7 +72,8 @@ while not terminado:
     else:
         print("Opción no válida")
 
-with open("tareas.txt", "w") as fichero:
-    for i in range(len(tareas)):
-        fichero.write(tareas[i]["tarea"] + "#")
-        fichero.write(str(tareas[i]["prioridad"]) + "\n")
+fichero = open("tareas.txt", "w")
+for i in range(len(tareas)):
+    fichero.write(tareas[i]["tarea"] + "#")
+    fichero.write(str(tareas[i]["prioridad"]) + "\n")
+fichero.close()
