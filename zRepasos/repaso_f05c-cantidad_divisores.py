@@ -6,7 +6,7 @@ devolver 4 (porque el número 8 tiene 4 divisores: 1, 2, 4, 8).
 Pruébala desde el cuerpo del programa.
 """
 
-def cantidad_divisores(n):
+def cantidad_divisores(n: int) -> int:
     cantidad = 0
     for divisor in range(1, n + 1):
         if n % divisor == 0:

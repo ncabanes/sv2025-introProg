@@ -9,7 +9,7 @@ $$$
 $$$$
 """
 
-def dibujar_triangulo(tamano, caracter):
+def dibujar_triangulo(tamano: int, caracter: str) -> None:
     for i in range(1, tamano + 1):
         print(caracter * i)
 

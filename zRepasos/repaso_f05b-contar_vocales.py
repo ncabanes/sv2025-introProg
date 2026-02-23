@@ -6,7 +6,7 @@ ejemplo, si el texto es "Ahora", debería devolver 3. Pruébala desde el
 cuerpo del programa.
 """
 
-def contar_vocales(texto):
+def contar_vocales(texto: str) -> int:
     contador = 0
     for letra in texto:
         if letra in "AEIOUaeiou":
